@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A free, source-linked operational guide for small teams responding to the October 2026 PHP, GitLab, LiteLLM, Railway and Zeabur notices.">
+  <meta name="color-scheme" content="light">
+  <title>The response manual — After the alert</title>
+  <link rel="stylesheet" href="/manual.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the manual</a>
+  <header class="manual-header">
+    <a class="wordmark" href="/">After the alert</a>
+    <nav aria-label="Main"><a href="/">Home</a><a href="#downloads">Downloads</a><a href="/#donate">Donate, optionally</a></nav>
+  </header>
+  <main id="main" class="manual-layout">
+    <aside class="manual-contents" aria-label="Contents">
+      <details>
+      <summary>Jump to a section</summary>
+      <nav aria-label="Manual sections">
+        <ol>
+          <li><a href="#start">Start with a record</a></li>
+          <li><a href="#php">PHP</a></li>
+          <li><a href="#gitlab">GitLab</a></li>
+          <li><a href="#litellm">LiteLLM</a></li>
+          <li><a href="#railway">Railway</a></li>
+          <li><a href="#zeabur">Zeabur</a></li>
+          <li><a href="#verify">Close with evidence</a></li>
+          <li><a href="#example">A fictional tabletop</a></li>
+          <li><a href="#downloads">Free downloads</a></li>
+          <li><a href="#sources">Original sources</a></li>
+        </ol>
+      </nav>
+      </details>
+      <p class="contents-note">Public-source snapshot<br><time datetime="2026-10-22">22 October 2026</time><br>All times below are UTC.</p>
+    </aside>
+    <article class="manual-article">
+      <div class="manual-intro"><p class="scope-note"><strong>Expanded edition:</strong> the <a href="/#library">incident library</a> now includes thirteen topics with detailed recovery playbooks. Use the <a href="/tools.html">browser checks and handoff workspace</a>, or <a href="/downloads/incident-response-kit.zip" download>download the complete kit</a>.</p>
+        <h1>Incident response manual</h1>
+        <p class="lede">Name the owner, preserve the evidence, and identify what actually ran. Then follow the vendor’s current guidance and keep receipts for the recovery.</p>
+        <p>For solo operators and small agencies coordinating work across client sites, packages and hosting accounts. Everything here is free, including the scripts and checklist. <a href="/#donate">Voluntary donations</a> do not unlock anything.</p>
+        <div class="scope-note"><strong>Know the limits.</strong> This is a dated public-source guide, not continuous monitoring, a scan or a security certification. It does not establish whether your systems were compromised. A responsible technical owner must adapt and execute the response. Get qualified incident-response help when compromise is suspected or the scope exceeds that owner’s ability. Unknown stays unknown.</div>
+      </div>
+
+      <section id="start" aria-labelledby="start-heading">
+        <p class="section-number">01 / Start</p>
+        <h2 id="start-heading">Start with a record, before changing the system.</h2>
+        <div class="critical-note"><strong>Possible LiteLLM exposure?</strong> Do not start Python or pip in that environment. The reported payload can run on interpreter startup. Read the <a href="#litellm">LiteLLM section</a> first.</div>
+        <ol class="steps">
+          <li><strong>Assign an owner.</strong> Name who can authorize and perform changes for each asset. Record the decision, time and business impact. Coordinate urgent containment with evidence preservation; do not postpone containment while waiting for a perfect inventory.</li>
+          <li><strong>Preserve what you can safely preserve.</strong> Retain existing deployment records, artifact identifiers, relevant logs and provider notices before rebuilding or deleting anything. Store evidence with restricted access. Record who collected it and when. Keep credential values out of the checklist.</li>
+          <li><strong>Identify the deployed and executed artifact.</strong> Record the installed version, package source or image digest, build/download time, deployment time and execution times where relevant. A dependency declaration or mutable image tag alone cannot identify what ran.</li>
+          <li><strong>Read the original notice again.</strong> Open the vendor source linked in the matching section. Record its update time and the guidance you used. This snapshot can become stale.</li>
+          <li><strong>Let the technical owner execute the response.</strong> Record containment, updates, credential revocations and rebuilds separately. Use the current vendor procedure and a trusted environment. Do not treat a successful update as proof that exposed credentials were revoked.</li>
+          <li><strong>Verify and hand over.</strong> Check the deployed artifact and application behavior with independent evidence. Assign every unresolved question an owner and a next check. Use the <a href="#verify">closure record</a>.</li>
+        </ol>
+        <h3>One record per asset</h3>
+        <dl class="record-fields">
+          <div><dt>Identity</dt><dd>Asset, environment, client or project reference, technical owner.</dd></div>
+          <div><dt>What ran</dt><dd>Installed version, artifact origin and digest or package build, download/build/deploy/execution times.</dd></div>
+          <div><dt>Basis</dt><dd>Original advisory URL, access time, applicable interval or incident condition.</dd></div>
+          <div><dt>Action</dt><dd>Decision, executor, start and completion times, rollback plan, receipt location.</dd></div>
+          <div><dt>Remaining gap</dt><dd>Unknown fact, evidence needed, responsible person, next check time.</dd></div>
+        </dl>
+        <p class="source">Workflow: editorial synthesis of the <a href="https://www.php.net/archive/2026.php#2026-10-21-5">PHP advisory</a>, <a href="https://docs.litellm.ai/blog/security-incident-oct-21-2026">LiteLLM incident report</a>, <a href="https://blog.railway.com/p/security-disclosure-wednesday-october-21st">Railway disclosure</a> and <a href="https://zeabur.com/blogs/zeabur-is-shutting-down">Zeabur announcement</a>. Reviewed 22 October 2026.</p>
+      </section>
+
+      <section id="php" aria-labelledby="php-heading">
+        <p class="section-number">02 / Runtime</p>
+        <h2 id="php-heading">PHP: compare the running build.</h2>
+        <p>PHP’s 21 October advisory covers CVE-2026-109618 and CVE-2026-109619. It identifies web-serving installations as at risk, with mod_php the highest-risk configuration. The upstream fixed releases are:</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="PHP fixed release table">
+          <table><caption>Upstream floors for these two vulnerabilities</caption><thead><tr><th scope="col">Branch</th><th scope="col">Fixed release</th></tr></thead><tbody>
+            <tr><th scope="row">8.2</th><td>8.2.35</td></tr><tr><th scope="row">8.3</th><td>8.3.36</td></tr><tr><th scope="row">8.4</th><td>8.4.27</td></tr><tr><th scope="row">8.5</th><td>8.5.12</td></tr>
+          </tbody></table>
+        </div>
+        <p>Earlier releases within those branches need attention. PHP also supplied minimal source backports for 7.4, 8.0 and 8.1. Distribution packages may carry backported fixes without matching these upstream numbers: obtain the distributor’s advisory and exact package-build receipt.</p>
+        <p>Record the runtime serving requests, including every worker or replica. A CLI version, control-panel setting or successful build alone does not establish the version serving production traffic. After the owner updates and restarts or redeploys as required, retain a runtime receipt and application smoke-test results.</p>
+        <p class="source">Sources: <a href="https://www.php.net/archive/2026.php#2026-10-21-5">PHP’s 21 October advisory</a>, <a href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w">out-of-memory corruption advisory</a>, <a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp">stale global state advisory</a>. Snapshot: 22 October 2026.</p>
+      </section>
+
+      <section id="gitlab" aria-labelledby="gitlab-heading">
+        <p class="section-number">03 / Source hosting</p>
+        <h2 id="gitlab-heading">GitLab: use the exact affected interval.</h2>
+        <p>GitLab rates CVE-2026-110264 at CVSS 3.1 10.0. Under certain conditions, the regular-expression compiler flaw could allow unauthenticated code execution. The advisory gives these GitLab Community Edition and Enterprise Edition intervals:</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="GitLab affected version table">
+          <table><caption>Boundaries stated in GitLab’s advisory</caption><thead><tr><th scope="col">Affected interval</th><th scope="col">Fixed release</th></tr></thead><tbody>
+            <tr><th scope="row">From 7.0, before 18.11.13</th><td>18.11.13</td></tr>
+            <tr><th scope="row">19.0, before 19.0.10</th><td>19.0.10</td></tr>
+            <tr><th scope="row">19.1, before 19.1.9</th><td>19.1.9</td></tr>
+            <tr><th scope="row">19.2, before 19.2.9</th><td>19.2.9</td></tr>
+            <tr><th scope="row">19.3, before 19.3.6</th><td>19.3.6</td></tr>
+            <tr><th scope="row">19.4, before 19.4.3</th><td>19.4.3</td></tr>
+            <tr><th scope="row">19.5, before 19.5.1</th><td>19.5.1</td></tr>
+          </tbody></table>
+        </div>
+        <p>These are vulnerability boundaries, not instructions to skip required upgrade steps. The owner must follow GitLab’s current upgrade path and migration guidance. Record the installed edition, build and deployment type.</p>
+        <p>GitLab says its managed infrastructure is patched. Its notice identifies fixed internal builds for Dedicated. Use the provider’s current receipt for your deployment; do not label every GitLab service affected. A patched version alone cannot rule out earlier compromise.</p>
+        <p class="source">Source: <a href="https://docs.gitlab.com/ja-jp/releases/patches/patch-release-gitlab-19-5-1-released/">GitLab’s critical patch advisory</a>, “CVE-2026-110264,” detection guidance and upgrade notes. Exact intervals checked against official search-returned text on 22 October 2026; direct page retrieval failed.</p>
+      </section>
+
+      <section id="litellm" aria-labelledby="litellm-heading">
+        <p class="section-number">04 / Release artifacts</p>
+        <h2 id="litellm-heading">LiteLLM: do not start the affected interpreter.</h2>
+        <p>The vendor identifies all seven PyPI wheels for version 1.107.0 and affected Docker Hub/GHCR artifacts. It reports that the public source tag was clean. A clean repository therefore cannot establish that an installed release artifact was clean.</p>
+        <div class="critical-note"><strong>Do not run Python or pip to check the version.</strong> The reported payload executes at Python interpreter startup without a LiteLLM import. Have the technical owner inspect an offline, read-only copy from a trusted environment.</div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="LiteLLM distribution windows">
+          <table><caption>Vendor-reported windows on 21 October 2026, UTC</caption><thead><tr><th scope="col">Distribution</th><th scope="col">Affected availability</th></tr></thead><tbody>
+            <tr><th scope="row">PyPI 1.107.0 wheels</th><td>11:39:51–13:23</td></tr>
+            <tr><th scope="row">Docker Hub</th><td>11:46:56–14:20</td></tr>
+            <tr><th scope="row">GHCR</th><td>11:46:56; unavailable by 13:51</td></tr>
+          </tbody></table>
+        </div>
+        <p>Affected tags included <code>v1.107.0</code>, <code>latest</code>, <code>main-latest</code> and <code>main-stable</code>. Preserve artifact identity and download, build, deploy and interpreter-start times. Cached artifacts may run later than the distribution window.</p>
+        <p>Use the current vendor response procedure for containment, credential revocation and a clean rebuild. Missing local markers do not prove absence of exposure. A metadata check cannot determine which credentials were read or whether they were used.</p>
+        <p class="source">Sources: <a href="https://docs.litellm.ai/blog/security-incident-oct-21-2026">LiteLLM’s incident report</a>, affected artifacts, timeline and remediation warning; <a href="https://github.com/BerriAI/litellm/issues/47826">Upwind’s upstream report</a>. Snapshot: 22 October 2026. Vendor text retrieved through search; direct page retrieval failed.</p>
+      </section>
+
+      <section id="railway" aria-labelledby="railway-heading">
+        <p class="section-number">05 / Credentials</p>
+        <h2 id="railway-heading">Railway: track revocation separately from deployment.</h2>
+        <p>Railway’s 21 October disclosure says an unauthorized party may have accessed encrypted environment variables and obtained decrypted contents for some. It recommended rotating stored variables and private-registry credentials for all users as a precaution. This is not confirmation that every customer was breached.</p>
+        <p>Inventory credential types and owning services without copying secret values into the record. The technical owner should follow the latest notice, replace affected credentials through their issuing providers, update dependent services and confirm the old credentials are revoked. Preserve provider receipts with secret values removed.</p>
+        <p>Verify both halves: the application uses the replacement successfully, and the issuer records the old credential as revoked. A new deployment proves neither on its own. Keep the remaining exposure question open if the available evidence cannot answer it.</p>
+        <div class="scope-note"><strong>Deployment status is time-sensitive.</strong> The last status retained for this guide was 22 October at 00:22 UTC: work to restore builds continued. That is a stale snapshot, not a current claim that deployments are paused or restored. Check the live status before planning work.</div>
+        <p class="source">Sources: <a href="https://blog.railway.com/p/security-disclosure-wednesday-october-21st">Railway’s security disclosure</a> and <a href="https://status.railway.com/">Railway’s live status page</a>. Research date: 22 October 2026.</p>
+      </section>
+
+      <section id="zeabur" aria-labelledby="zeabur-heading">
+        <p class="section-number">06 / Migration</p>
+        <h2 id="zeabur-heading">Zeabur: restore before you call a backup usable.</h2>
+        <p>Zeabur’s 17 October announcement schedules a wind-down. It describes unauthorized access on 14 October to internal systems and some customer services.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Zeabur shutdown timeline">
+          <table><caption>Announced service deadlines</caption><thead><tr><th scope="col">Date</th><th scope="col">What changes</th></tr></thead><tbody>
+            <tr><th scope="row">1 December 2026</th><td>Dedicated-server renewals stop; servers shut down at individual expiry. Shared-cluster services pause, with manual restart available for backup.</td></tr>
+            <tr><th scope="row">31 December 2026</th><td>Final dedicated-server and shared-cluster shutdown.</td></tr>
+          </tbody></table>
+        </div>
+        <p>Use the actual server expiry as a planning constraint. The final shutdown date does not guarantee service until then. Data-deletion, final-export and support-closing dates were still unfinalized in the announcement.</p>
+        <p>Record databases, files, configuration, domains and external dependencies. Choose a destination with the technical owner. Restore into an isolated destination, check record counts and representative files, and run application smoke tests. Record the backup time and the data lost or changed since it. An export file’s existence proves only that a file exists.</p>
+        <p>Before cutover, agree how to handle new writes, verify the restored application and keep a rollback plan. Retain restore and cutover receipts. Mark migration complete only when the owner accepts the restored service and outstanding data gaps.</p>
+        <p class="source">Source: <a href="https://zeabur.com/blogs/zeabur-is-shutting-down">Zeabur’s founder announcement</a>, incident account and service shutdown timeline. Snapshot: 22 October 2026. Restore and acceptance steps are this guide’s operational checklist.</p>
+      </section>
+
+      <section id="verify" aria-labelledby="verify-heading">
+        <p class="section-number">07 / Verification</p>
+        <h2 id="verify-heading">Close the action with evidence. Keep the unanswered question.</h2>
+        <p>Separate the action from the conclusion. “Updated” describes work. “The production runtime reports the fixed build at this time” describes evidence. Neither establishes that an earlier compromise never occurred.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Recovery evidence">
+          <table><caption>What to retain for each action</caption><thead><tr><th scope="col">Action</th><th scope="col">Independent receipt</th><th scope="col">Functional check</th></tr></thead><tbody>
+            <tr><th scope="row">Update or rebuild</th><td>Production artifact digest or exact package/runtime build, collection time and source.</td><td>Representative requests, login, background work and critical integrations, where applicable.</td></tr>
+            <tr><th scope="row">Credential replacement</th><td>Issuer’s revocation record for the old credential; replacement identifier with values removed.</td><td>Dependent service succeeds using the replacement.</td></tr>
+            <tr><th scope="row">Migration</th><td>Restore log, backup timestamp, destination identity and data-comparison results.</td><td>Representative reads and writes on the restored application, then agreed cutover checks.</td></tr>
+          </tbody></table>
+        </div>
+        <p>Obtain the receipt from the running system or issuing provider, independently of the change command’s success message. Have another person review it when available. A solo operator can use a separate read-back and record that no second person reviewed it.</p>
+        <p>End the record with the owner’s decision, evidence locations, unresolved questions and next check time. Keep “exposure unknown” if logs, artifact identity or execution history are missing. Do not turn an empty search result into a clean bill of health.</p>
+        <p class="source">Verification checklist: editorial synthesis of the <a href="https://www.php.net/archive/2026.php#2026-10-21-5">PHP update notice</a>, <a href="https://docs.litellm.ai/blog/security-incident-oct-21-2026">LiteLLM response guidance</a>, <a href="https://blog.railway.com/p/security-disclosure-wednesday-october-21st">Railway rotation guidance</a> and <a href="https://zeabur.com/blogs/zeabur-is-shutting-down">Zeabur shutdown notice</a>.</p>
+      </section>
+
+      <section id="example" aria-labelledby="example-heading">
+        <p class="section-number">08 / Tabletop</p>
+        <h2 id="example-heading">A fictional agency, three open records.</h2>
+        <p><strong>Fictional exercise.</strong> These are invented assets and observations, not customer work or evidence of a successful recovery.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Fictional tabletop inventory">
+          <table><caption>How evidence changes the next step</caption><thead><tr><th scope="col">Asset / owner</th><th scope="col">Observed basis</th><th scope="col">Status and evidence needed</th></tr></thead><tbody>
+            <tr><th scope="row">Client website<br>Agency technical owner</th><td>Hosting panel lists PHP 8.3.35. Package-build evidence is absent.</td><td>Below the upstream floor; backport status unknown. Obtain distributor and production-runtime receipts, then plan the applicable update.</td></tr>
+            <tr><th scope="row">Internal assistant<br>Application owner</th><td>Deployment record names LiteLLM 1.107.0. Artifact digest and interpreter-start history are missing.</td><td>Possible affected artifact; execution unknown. Preserve records, avoid Python/pip and follow the incident procedure from a trusted environment.</td></tr>
+            <tr><th scope="row">Zeabur client portal<br>Client technical owner</th><td>An export file exists. No isolated restore has run.</td><td>Restore unverified. Obtain service expiry, restore the data and retain application acceptance results before cutover.</td></tr>
+          </tbody></table>
+        </div>
+        <p>No row becomes “safe” because a script prints a version. Each row closes only the question its retained evidence answers.</p>
+        <p class="source">Example basis: the <a href="#php">PHP floors</a>, <a href="#litellm">LiteLLM execution warning</a> and <a href="#zeabur">Zeabur schedule</a> above, each linked to its original source.</p>
+      </section>
+
+      <section id="downloads" aria-labelledby="downloads-heading">
+        <p class="section-number">09 / Take it with you</p>
+        <h2 id="downloads-heading">Free downloads. Read-only checks.</h2>
+        <p>Read each script before running it. Use a trusted machine. These tools collect or compare narrow observations; they do not patch systems, revoke credentials, assess compromise or certify recovery.</p>
+        <div class="download-item">
+          <h3><a href="/downloads/check-php-version.mjs" download>PHP version comparison · Node.js</a></h3>
+          <p>Compares a version you supply with this snapshot’s upstream floors. It does not connect to a server or identify its live runtime. Distribution backports need separate evidence.</p>
+          <pre><code>node check-php-version.mjs 8.3.35</code></pre>
+          <p>The example uses an invented observation. PHP 8.3.35 is below the listed 8.3.36 upstream floor.</p>
+        </div>
+        <div class="download-item">
+          <h3><a href="/downloads/inspect-litellm-metadata.sh" download>LiteLLM metadata inspection · shell</a></h3>
+          <p>Lists matching metadata-directory names and marker filenames immediately inside one directory. It reads no file contents and starts neither Python nor pip. Run it against an offline, read-only copy from a trusted environment. Supply the physical path to that copy’s site-packages directory; symlink paths are rejected.</p>
+          <pre><code>bash inspect-litellm-metadata.sh /path/to/site-packages</code></pre>
+          <p>The check is not recursive and does not inspect container artifacts. Local metadata can be missing or altered. A result cannot rule out an affected artifact or prior execution.</p>
+        </div>
+        <div class="download-item">
+          <h3><a href="/downloads/response-checklist.txt" download>Response checklist · plain text</a></h3>
+          <p>A fill-in record for ownership, artifact identity, actions, receipts and unresolved questions. Store completed copies privately. Never put credentials or other secrets in them.</p>
+        </div>
+        <p class="source">Tool comparison sources: <a href="https://www.php.net/archive/2026.php#2026-10-21-5">PHP advisory</a> and <a href="https://docs.litellm.ai/blog/security-incident-oct-21-2026">LiteLLM incident report</a>. Tools and guide use the 22 October 2026 snapshot.</p>
+      </section>
+      <section id="sources" aria-labelledby="sources-heading">
+        <h2 id="sources-heading">Original sources.</h2>
+        <p>Checked 22 October 2026. Read the latest vendor revision before making changes; this guide is a fixed snapshot.</p>
+        <ul>
+          <li><a href="https://www.php.net/archive/2026.php#2026-10-21-5">PHP security announcement and fixed releases</a></li>
+          <li><a href="https://docs.gitlab.com/ja-jp/releases/patches/patch-release-gitlab-19-5-1-released/">GitLab critical patch advisory</a></li>
+          <li><a href="https://docs.litellm.ai/blog/security-incident-oct-21-2026">LiteLLM vendor incident report</a> and <a href="https://github.com/BerriAI/litellm/issues/47826">the original researcher issue</a></li>
+          <li><a href="https://blog.railway.com/p/security-disclosure-wednesday-october-21st">Railway security disclosure</a> and <a href="https://status.railway.com/">current service status</a></li>
+          <li><a href="https://zeabur.com/blogs/zeabur-is-shutting-down">Zeabur wind-down announcement</a></li>
+        </ul>
+        <p class="source">Retrieval limit: GitLab and LiteLLM vendor text was available through search results when direct page opening failed. The original LiteLLM researcher issue was also reviewed. Workflow and recovery checklists are editorial synthesis; they are not vendor certification.</p>
+      </section>
+      <footer class="manual-footer"><p>All information, manuals and scripts remain free. <a href="/#donate">Support the work with a voluntary donation.</a></p><p><a href="/">Back to After the alert</a> · <a href="/files.html">Website files</a> · <a href="https://github.com/anon5376/after-the-alert">GitHub</a> · Snapshot: 22 October 2026</p></footer>
+    </article>
+  </main>
+</body>
+</html>

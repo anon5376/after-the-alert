@@ -1,0 +1,15 @@
+archive/
+research/
+PRODUCT.md
+VERIFICATION.md
+RELEASE-*.md
+.codex/
+.agents/
+.aws/
+.wrangler/
+node_modules/
+.env
+.env.*
+*.log
+.DS_Store
+coverage/

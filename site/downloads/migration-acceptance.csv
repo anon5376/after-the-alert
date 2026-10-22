@@ -1,0 +1,2 @@
+service_alias,owner,source_expiry,backup_time_utc,backup_receipt,restore_destination,restore_test_time,record_or_file_checks,app_smoke_tests,write_cutover_plan,rollback_plan,accepted_by,unresolved_gaps
+EXAMPLE-portal,Assign owner,Confirm actual expiry,unknown,none,Choose isolated destination,NOT RUN,NOT RUN,NOT RUN,not agreed,not agreed,,Restore not yet verified

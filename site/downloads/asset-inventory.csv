@@ -1,0 +1,2 @@
+asset_alias,technical_owner,product,deployed_version,package_origin_or_image_digest,observation_time_utc,advisory_url,exposure_question,action,verification_receipt,next_check
+EXAMPLE-web-01,Assign owner,PHP,unknown,unknown,record timestamp,https://www.php.net/archive/2026.php#2026-10-21-5,Backport and serving runtime unknown,Obtain runtime and package evidence,record private evidence location,assign next check

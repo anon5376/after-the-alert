@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://after-the-alert.pages.dev/sitemap.xml

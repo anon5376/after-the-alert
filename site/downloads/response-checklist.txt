@@ -1,0 +1,110 @@
+AFTER THE ALERT — RESPONSE CHECKLIST
+Free public-source operational guide. Snapshot: 2026-10-22.
+Use current original vendor guidance for every action. All times UTC.
+
+This checklist does not determine compromise or certify security.
+Unknown stays unknown. Keep completed records private. Never record secret values.
+Possible LiteLLM exposure: do not start Python or pip in the affected environment.
+
+1. OWNERSHIP AND EVIDENCE
+[ ] Asset/environment:
+[ ] Client/project reference:
+[ ] Technical owner and person authorized to approve changes:
+[ ] Record opened at (UTC):
+[ ] Business impact and urgent containment decision:
+[ ] Evidence preserved before destructive changes, where safely possible:
+[ ] Logs, deployment records and artifacts retained at:
+[ ] Collected by / collection time / source:
+[ ] Evidence access restricted; secret values excluded from this checklist.
+
+Coordinate urgent containment with preservation. Do not wait for a perfect inventory.
+
+2. WHAT ACTUALLY RAN
+[ ] Installed/runtime version and exact package build:
+[ ] Artifact source, image digest or package identifier:
+[ ] Download/build time:
+[ ] Deployment time:
+[ ] Relevant execution/interpreter-start times:
+[ ] Replicas/workers/environments included:
+[ ] Missing identity or timing evidence (write UNKNOWN where needed):
+
+A dependency declaration, mutable image tag or CLI version may differ from production.
+An affected artifact can run after its distribution window through a cache or redeploy.
+
+3. ORIGINAL SOURCE AND APPLICABILITY
+[ ] Current vendor advisory URL:
+[ ] Advisory update time / time accessed:
+[ ] Exact affected interval or incident condition:
+[ ] Evidence that this asset falls inside or outside that condition:
+[ ] Distribution backport or provider-specific exception and supporting receipt:
+[ ] Unanswered exposure question:
+
+PHP snapshot floors: 8.2.35 / 8.3.36 / 8.4.27 / 8.5.12.
+These cover the two listed vulnerabilities, not all security risk.
+Distribution backports need the distributor's advisory and exact build evidence.
+Source: https://www.php.net/archive/2026.php#2026-10-21-5
+
+GitLab CVE-2026-110264 affected intervals and fixed floors:
+  From 7.0 before 18.11.13 -> 18.11.13
+  19.0 before 19.0.10     -> 19.0.10
+  19.1 before 19.1.9      -> 19.1.9
+  19.2 before 19.2.9      -> 19.2.9
+  19.3 before 19.3.6      -> 19.3.6
+  19.4 before 19.4.3      -> 19.4.3
+  19.5 before 19.5.1      -> 19.5.1
+Follow the supported upgrade path; these floors do not authorize skipping steps.
+Managed deployments require the provider's current evidence for that deployment.
+Source: https://docs.gitlab.com/ja-jp/releases/patches/patch-release-gitlab-19-5-1-released/
+
+LiteLLM: vendor identifies PyPI 1.107.0 wheels and affected Docker/GHCR artifacts.
+Do not start Python or pip. Inspect an offline, read-only copy from a trusted environment.
+Missing markers do not rule out exposure. Preserve artifact identity and execution times.
+Source: https://docs.litellm.ai/blog/security-incident-oct-21-2026
+
+Railway: rotation recommended for all users as a precaution; not all users confirmed breached.
+Track credential identifiers/issuers and revocation receipts, never secret values.
+Source: https://blog.railway.com/p/security-disclosure-wednesday-october-21st
+Live status: https://status.railway.com/
+
+Zeabur: from 2026-12-01 renewals stop, dedicated servers shut down at individual expiry,
+and shared-cluster services pause with manual restart available for backup.
+Final dedicated-server/shared-cluster shutdown: 2026-12-31.
+Deletion, final-export and support-closing dates were unfinalized in the announcement.
+Source: https://zeabur.com/blogs/zeabur-is-shutting-down
+
+4. TECHNICAL OWNER'S RESPONSE
+[ ] Decision and current procedure used:
+[ ] Executor / authorizer:
+[ ] Containment action and timestamp:
+[ ] Update/rebuild action and timestamp:
+[ ] Credential replacement and old-credential revocation actions/timestamps:
+[ ] Migration action and timestamp, if applicable:
+[ ] Backup time and actual service expiry, if applicable:
+[ ] Rollback plan and handling of new writes during migration:
+[ ] Change receipts retained at:
+
+5. VERIFICATION
+[ ] Production runtime/package build or deployed artifact identity checked:
+[ ] Independent read-back source and timestamp:
+[ ] Credential issuer records old credential as revoked:
+[ ] Dependent service uses replacement successfully:
+[ ] Restore performed in an isolated destination, if applicable:
+[ ] Data comparison / representative files / record counts checked:
+[ ] Data gap since backup recorded and accepted:
+[ ] Application smoke tests, expected results and actual results recorded:
+[ ] Critical integrations/background jobs checked where applicable:
+[ ] Evidence reviewed by another person, or no second-person review recorded:
+[ ] Technical owner accepts service operation/cutover:
+
+A successful change command is not an independent receipt.
+A backup file is not a successful restore. A patch is not proof of no earlier compromise.
+
+6. HANDOVER
+[ ] Completed actions and evidence locations:
+[ ] Unresolved questions (retain UNKNOWN):
+[ ] Owner for each unresolved question:
+[ ] Next check time:
+[ ] Final decision / decision-maker / timestamp:
+
+All information, manuals and scripts are free. Donations are voluntary.
+Return to the guide for the source-linked workflow and script limitations.
