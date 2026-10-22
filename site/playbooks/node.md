@@ -6,7 +6,7 @@ Upgrade affected Node.js runtimes, redeploy applications that carry their own ru
 
 ## Does this apply?
 
-The 21 October security release fixes a Brotli decoder flaw permitting remote code execution and several TLS hostname-validation defects. The Brotli issue and loose-IP hostname bypass affect supported lines 22, 24 and 26. The fullwidth-IP hostname bypass affects 24 and 26. Actual application exposure depends on which input reaches those functions. The advisory does not establish widespread exploitation. See the [Node.js security advisory](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases).
+The 21 October security release fixes **CVE-2026-111497**, a High-severity Brotli decoder flaw permitting remote code execution and several TLS hostname-validation defects. The Brotli issue and loose-IP hostname bypass affect supported lines 22, 24 and 26. The fullwidth-IP hostname bypass affects 24 and 26. Actual application exposure depends on which input reaches those functions. The advisory does not establish widespread exploitation. See the [Node.js security advisory](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases).
 
 | Runtime line | Fixed release |
 |---|---|

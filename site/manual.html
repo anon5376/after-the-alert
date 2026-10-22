@@ -6,14 +6,14 @@
   <meta name="description" content="A free, source-linked operational guide for small teams responding to the October 2026 PHP, GitLab, LiteLLM, Railway and Zeabur notices.">
   <meta name="color-scheme" content="light">
   <title>The response manual — After the alert</title>
+  <link rel="icon" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/manual.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to the manual</a>
   <header class="manual-header">
-    <a class="wordmark" href="/" aria-label="After the alert"><pre aria-hidden="true">+-----------------+
-| AFTER THE ALERT |
-+-----------------+</pre></a>
+    <a class="wordmark brand" href="/" aria-label="After the alert"><svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><path d="M3 3h16v7H10v15H3z" fill="currentColor"/><path d="M19 10h6v15H10v-7h9z" fill="currentColor"/></svg><span class="brand-name">after the alert</span></a>
     <nav aria-label="Main"><a href="/">Home</a><a href="#downloads">Downloads</a><a href="/#donate">Donate, optionally</a></nav>
   </header>
   <main id="main" class="manual-layout">
@@ -149,6 +149,7 @@
         <p class="section-number">07 / Verification</p>
         <h2 id="verify-heading">Close the action with evidence. Keep the unanswered question.</h2>
         <p>Separate the action from the conclusion. “Updated” describes work. “The production runtime reports the fixed build at this time” describes evidence. Neither establishes that an earlier compromise never occurred.</p>
+        <p class="table-hint">Scroll horizontally to see all columns.</p>
         <div class="table-scroll" tabindex="0" role="region" aria-label="Recovery evidence">
           <table><caption>What to retain for each action</caption><thead><tr><th scope="col">Action</th><th scope="col">Independent receipt</th><th scope="col">Functional check</th></tr></thead><tbody>
             <tr><th scope="row">Update or rebuild</th><td>Production artifact digest or exact package/runtime build, collection time and source.</td><td>Representative requests, login, background work and critical integrations, where applicable.</td></tr>
@@ -165,6 +166,7 @@
         <p class="section-number">08 / Tabletop</p>
         <h2 id="example-heading">A fictional agency, three open records.</h2>
         <p><strong>Fictional exercise.</strong> These are invented assets and observations, not customer work or evidence of a successful recovery.</p>
+        <p class="table-hint">Scroll horizontally to see all columns.</p>
         <div class="table-scroll" tabindex="0" role="region" aria-label="Fictional tabletop inventory">
           <table><caption>How evidence changes the next step</caption><thead><tr><th scope="col">Asset / owner</th><th scope="col">Observed basis</th><th scope="col">Status and evidence needed</th></tr></thead><tbody>
             <tr><th scope="row">Client website<br>Agency technical owner</th><td>Hosting panel lists PHP 8.3.35. Package-build evidence is absent.</td><td>Below the upstream floor; backport status unknown. Obtain distributor and production-runtime receipts, then plan the applicable update.</td></tr>

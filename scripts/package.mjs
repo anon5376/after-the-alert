@@ -64,7 +64,7 @@ Donations unlock nothing and do not buy incident-response support.
 fs.cpSync('site',path.join(source,'site'),{recursive:true,filter:filename=>!filename.endsWith('.zip')});
 fs.cpSync('scripts',path.join(source,'scripts'),{recursive:true});
 fs.cpSync('tests',path.join(source,'tests'),{recursive:true});
-for(const name of ['README.md','FILES.md','.gitignore'])fs.copyFileSync(name,path.join(source,name));
+for(const name of ['README.md','FILES.md','DESIGN.md','.gitignore'])fs.copyFileSync(name,path.join(source,name));
 fs.writeFileSync(path.join(source,'README.txt'),`AFTER THE ALERT — WEBSITE SOURCE
 Static HTML/CSS/JS. No application dependencies.
 Run tests: node --test tests/*.test.mjs
@@ -74,7 +74,8 @@ Serve site/ with a static HTTP server to use the browser modules.
 All user-entered tool data stays in the browser tab unless the user exports it.
 Only publish site/. Keep credentials outside this tree.
 Original code and guides are free to use and redistribute. Third-party source
-materials retain their owners' rights.
+materials retain their owners' rights. Public Sans is distributed under the
+SIL Open Font License in site/assets/OFL-Public-Sans.txt.
 ZIP downloads are omitted from this source archive to avoid recursive copies.
 `);
 for(const [folder,name] of [[kit,'incident-response-kit.zip'],[source,'site-source.zip']]) {

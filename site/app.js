@@ -63,14 +63,14 @@ function refreshHandoff() {
 }
 function showResult(container,result,alias) {
   container.className=`result-panel ${result.status}`;container.replaceChildren();
-  container.append(node('p',result.status==='action'?'Action needed':result.status==='floor'?'Version floor met':result.status==='invalid'?'Input needed':'Evidence needed','result-label'),node('h3',result.heading,'result-heading'),node('p',result.summary));
+  container.append(node('h3',result.heading,'result-heading'),node('p',result.status==='action'?'Action needed':result.status==='floor'?'Version floor met':result.status==='invalid'?'Input needed':'Evidence needed','result-label'),node('p',result.summary));
   if(result.observation)container.append(node('p',result.observation,'next-action'));
   if(result.fixedVersion)container.append(node('p',`Published fix floor: ${result.fixedVersion}`,'next-action'));
   if(result.steps.length){const list=node('ol',undefined,'result-steps');for(const step of result.steps)list.append(node('li',step));container.append(list);}
   if(result.status!=='invalid') {
     const links=node('p',undefined,'row-links');
-    const guide=node('a','Open the recovery playbook →');guide.href=result.guide;
-    const source=node('a','Original advisory ↗');source.href=result.source;
+    const guide=node('a','Open the recovery playbook');guide.href=result.guide;
+    const source=node('a','Original advisory');source.href=result.source;
     links.append(guide,source);container.append(links,node('p',result.limits,'field-help'));
     const add=node('button','Add to handoff','button secondary');add.type='button';
     add.addEventListener('click',()=>{assets.push({id:nextId++,alias:alias||`${result.product} asset ${assets.length+1}`,product:result.product,version:result.version,result});add.disabled=true;add.textContent='Added to handoff';refreshHandoff();});

@@ -61,6 +61,8 @@ All three are read-only checks. Read their source and help before running them. 
 | `robots.txt` | Crawler directions and sitemap location. |
 | `sitemap.xml` | Public page URLs. |
 | `favicon.svg` | Browser-tab icon. |
+| `assets/public-sans.ttf` | Self-hosted Public Sans variable font. |
+| `assets/OFL-Public-Sans.txt` | The font's open-source license. |
 
 ## Build scripts, tests and repository files
 
@@ -74,5 +76,6 @@ These files are in the repository and source ZIP. They do not run on the hosting
 | `tests/dependency-files.test.mjs` | Eight tests for declaration parsing, input rejection and output privacy. |
 | `tests/triage-core.test.mjs` | Six tests for version/evidence results, credential state and handoff exports. |
 | `README.md` | Project overview, build, test, deploy and reuse instructions. |
+| `DESIGN.md` | Design tokens, components and responsive layout reference. |
 | `FILES.md` | Source for this inventory page. |
 | `.gitignore` | Excludes local notes, credentials, caches and generated logs from Git. |
