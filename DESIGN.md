@@ -131,8 +131,8 @@ Deep blue is reserved for actions and active wayfinding; cool neutrals carry the
 
 ## Typography
 
-**Display Font:** Public Sans (self-hosted, sans-serif fallback)  
-**Body Font:** Public Sans (sans-serif fallback)  
+**Display Font:** Public Sans (self-hosted, sans-serif fallback)
+**Body Font:** Public Sans (sans-serif fallback)
 **Label/Mono Font:** Public Sans for labels; system monospace for code and addresses.
 
 **Character:** Public Sans gives the reference a clear, contemporary reading voice. Compact monospace is limited to executable snippets, identifiers, and wallet addresses.
