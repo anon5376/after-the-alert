@@ -18,6 +18,7 @@ if(search) {
   byId('search-controls').hidden=false;
   const rows=[...document.querySelectorAll('.incident-row')];
   const buttons=[...document.querySelectorAll('[data-filter]')];
+  const clear=byId('clear-filters');
   let category='all';
   const update=()=>{
     const terms=search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
@@ -26,9 +27,12 @@ if(search) {
     for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.filter===category));
     byId('filter-status').textContent=`${count} of ${rows.length} topics`;
     byId('no-results').hidden=count!==0;
+    if(clear)clear.hidden=category==='all'&&!search.value.trim();
   };
   search.addEventListener('input',update);
   for(const button of buttons)button.addEventListener('click',()=>{category=button.dataset.filter;update();});
+  if(clear)clear.addEventListener('click',()=>{search.value='';category='all';update();search.focus();});
+  update();
 }
 
 const address=byId('wallet-address');
@@ -52,11 +56,11 @@ function refreshHandoff() {
   if(!byId('handoff-preview'))return;
   byId('handoff-preview').value=makeHandoff({assets,rotations});
   const list=byId('workspace-list');list.replaceChildren();
-  if(!assets.length)list.append(node('p','No asset checks saved yet. Use “Add to handoff” on a result.','empty-state'));
+  if(!assets.length)list.append(node('p','No checks added yet. Use “Add to response notes” on a result.','empty-state'));
   for(const asset of assets) {
     const item=node('article',undefined,'workspace-item');
     const description=node('div');description.append(node('strong',asset.alias),node('p',`${asset.product} ${asset.version||'unknown'} — ${asset.result.heading}`));
-    const remove=node('button','Remove','text-button');remove.type='button';remove.setAttribute('aria-label',`Remove ${asset.alias} from handoff`);
+    const remove=node('button','Remove','text-button');remove.type='button';remove.setAttribute('aria-label',`Remove ${asset.alias} from response notes`);
     remove.addEventListener('click',()=>{assets.splice(assets.findIndex(x=>x.id===asset.id),1);refreshHandoff();});
     item.append(description,remove);list.append(item);
   }
@@ -72,8 +76,8 @@ function showResult(container,result,alias) {
     const guide=node('a','Open the recovery playbook');guide.href=result.guide;
     const source=node('a','Original advisory');source.href=result.source;
     links.append(guide,source);container.append(links,node('p',result.limits,'field-help'));
-    const add=node('button','Add to handoff','button secondary');add.type='button';
-    add.addEventListener('click',()=>{assets.push({id:nextId++,alias:alias||`${result.product} asset ${assets.length+1}`,product:result.product,version:result.version,result});add.disabled=true;add.textContent='Added to handoff';refreshHandoff();});
+    const add=node('button','Add to response notes','button secondary');add.type='button';
+    add.addEventListener('click',()=>{assets.push({id:nextId++,alias:alias||`${result.product} asset ${assets.length+1}`,product:result.product,version:result.version,result});add.disabled=true;add.textContent='Added to response notes';refreshHandoff();});
     container.append(add);
   }
 }
@@ -87,7 +91,12 @@ if(byId('version-form')) {
     const product=byId('product').value;
     byId('version').placeholder={php:'8.3.35',gitlab:'19.5.0',node:'24.22.0',plex:'1.43.3.10860'}[product];
     byId('version-help').textContent=product==='plex'?'Use four numeric parts. An optional Plex build hash is accepted.':'Use three numeric parts, without a v prefix. Distro suffixes and backports need the distributor advisory.';
+    const result=byId('version-result');result.className='result-panel';result.replaceChildren();
+    result.append(node('h3',`Check your ${byId('product').selectedOptions[0].textContent} version`),node('p','Enter the version you found in your deployment, then choose “Compare version”.'));
   });
+  const requestedProduct=new URLSearchParams(window.location.search).get('product');
+  if([...byId('product').options].some(option=>option.value===requestedProduct))byId('product').value=requestedProduct;
+  byId('product').dispatchEvent(new Event('change'));
   byId('litellm-form').addEventListener('submit',event=>{
     event.preventDefault();
     showResult(byId('litellm-result'),assessLiteLLM({evidence:byId('litellm-evidence').value,version:byId('litellm-version').value.trim()}),byId('litellm-alias').value.trim());

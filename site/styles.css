@@ -406,3 +406,23 @@ button:disabled { cursor: default; }
 a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 @media screen and (max-width: 500px) { .site-header nav { font-size: 13px; gap: 0 12px; } }
+
+.library-search-row > .filter-feedback { width: auto; justify-content: flex-end; }
+.filter-feedback { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.filter-feedback p { margin: 0; }
+.filter-feedback .text-button { font-size: var(--text-sm); }
+.script-downloads, .template-downloads { margin-top: var(--space-8); scroll-margin-top: var(--space-6); }
+.script-downloads > h3, .template-downloads > h3 { margin-bottom: var(--space-2); font-size: var(--text-xl); font-weight: 500; }
+.script-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4) var(--space-8); }
+.script-item h4 { margin: 0 0 var(--space-2); font-size: var(--text-base); font-weight: 500; }
+.script-item a { display: inline-flex; align-items: center; min-height: 36px; font-size: var(--text-sm); font-weight: 500; }
+.script-item details { min-width: 0; align-self: start; }
+.script-item summary { cursor: pointer; padding-block: var(--space-2); color: var(--accent); font-size: var(--text-sm); font-weight: 500; }
+.script-item details p { margin-top: var(--space-2); }
+.script-filename { overflow-wrap: anywhere; }
+.script-item .code-block { margin-block: var(--space-3); }
+.manual-header nav a[aria-current="page"] { color: var(--accent); font-weight: 500; }
+@media (max-width: 700px) { .script-item { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); } }
+
+.template-downloads h4 { margin-bottom: var(--space-1); font-size: var(--text-base); font-weight: 500; }
+@media (max-width: 500px) { .library-search-row > .filter-feedback { justify-content: flex-start; margin-top: var(--space-3); } }

@@ -4,6 +4,8 @@ The website is plain HTML, CSS and JavaScript. There is no backend, database, ac
 
 [Browse the public repository](https://github.com/anon5376/after-the-alert) · [Download the website source](https://after-the-alert.pages.dev/downloads/site-source.zip)
 
+Looking for a script to use? The [script downloads](https://after-the-alert.pages.dev/#scripts) show each filename, required runtime and how to run it.
+
 ## Pages
 
 | File under site/ | Purpose |
@@ -21,7 +23,7 @@ Guide filenames: `php.html`, `gitlab.html`, `litellm.html`, `railway.html`, `zea
 
 | File under site/ | Purpose |
 | --- | --- |
-| `app.js` | Search/filter controls, copy buttons, forms, credential rows, printing and local Markdown export. |
+| `app.js` | Search/filter reset, product selection from guide links, copy buttons, forms, credential rows, printing and local Markdown export. |
 | `triage-core.mjs` | Version comparison, LiteLLM evidence classification, credential status and handoff formatting. |
 | `config.js` | Public donation address and network configuration. No secret keys. |
 | `styles.css` | Styles for the homepage, tools, sources, inventory and guides. |

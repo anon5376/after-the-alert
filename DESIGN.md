@@ -4,7 +4,9 @@ A small, useful public reference site. The reader comes with an incident name or
 
 ## Visual decisions
 
-- Read mode. Direct title and brief description, then three practical tool links, then the searchable incident library.
+- Read mode. A compact introduction explains the free guides, browser tools and downloadable scripts, with direct routes to guides and scripts. Three browser tool links follow it, then the searchable guide library.
+- Shared navigation names five destinations: Guides, Tools, Downloads, Manual and Sources. GitHub and the file inventory remain in the footer.
+- Downloads separate command-line scripts from templates and website source. Each script names its runtime and filename, with a native disclosure for the command and limits. Browser tools use Response notes for the local export workflow.
 - Warm offwhite page (#f5f5f2), white reading surfaces, dark ink (#202320), quiet secondary text (#5b625e), and blue links (#284fc4).
 - Inter throughout. Medium weight for titles and labels; regular body text. Code and identifiers alone use monospace.
 - One 1080px content column with 32px desktop and 16px mobile outer gutters. Fine dividers and proximity organize content. Corners are 8px on controls and 12px on substantial surfaces.
