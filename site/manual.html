@@ -18,7 +18,7 @@
   </header>
   <main id="main" class="manual-layout">
     <aside class="manual-contents" aria-label="Contents">
-      <details>
+      <details open>
       <summary>Jump to a section</summary>
       <nav aria-label="Manual sections">
         <ol>
@@ -46,7 +46,6 @@
       </div>
 
       <section id="start" aria-labelledby="start-heading">
-        <p class="section-number">01 / Start</p>
         <h2 id="start-heading">Start with a record, before changing the system.</h2>
         <div class="critical-note"><strong>Possible LiteLLM exposure?</strong> Do not start Python or pip in that environment. The reported payload can run on interpreter startup. Read the <a href="#litellm">LiteLLM section</a> first.</div>
         <ol class="steps">
@@ -69,7 +68,6 @@
       </section>
 
       <section id="php" aria-labelledby="php-heading">
-        <p class="section-number">02 / Runtime</p>
         <h2 id="php-heading">PHP: compare the running build.</h2>
         <p>PHP’s 21 October advisory covers CVE-2026-109618 and CVE-2026-109619. It identifies web-serving installations as at risk, with mod_php the highest-risk configuration. The upstream fixed releases are:</p>
         <div class="table-scroll" tabindex="0" role="region" aria-label="PHP fixed release table">
@@ -83,7 +81,6 @@
       </section>
 
       <section id="gitlab" aria-labelledby="gitlab-heading">
-        <p class="section-number">03 / Source hosting</p>
         <h2 id="gitlab-heading">GitLab: use the exact affected interval.</h2>
         <p>GitLab rates CVE-2026-110264 at CVSS 3.1 10.0. Under certain conditions, the regular-expression compiler flaw could allow unauthenticated code execution. The advisory gives these GitLab Community Edition and Enterprise Edition intervals:</p>
         <div class="table-scroll" tabindex="0" role="region" aria-label="GitLab affected version table">
@@ -103,7 +100,6 @@
       </section>
 
       <section id="litellm" aria-labelledby="litellm-heading">
-        <p class="section-number">04 / Release artifacts</p>
         <h2 id="litellm-heading">LiteLLM: do not start the affected interpreter.</h2>
         <p>The vendor identifies all seven PyPI wheels for version 1.107.0 and affected Docker Hub/GHCR artifacts. It reports that the public source tag was clean. A clean repository therefore cannot establish that an installed release artifact was clean.</p>
         <div class="critical-note"><strong>Do not run Python or pip to check the version.</strong> The reported payload executes at Python interpreter startup without a LiteLLM import. Have the technical owner inspect an offline, read-only copy from a trusted environment.</div>
@@ -120,7 +116,6 @@
       </section>
 
       <section id="railway" aria-labelledby="railway-heading">
-        <p class="section-number">05 / Credentials</p>
         <h2 id="railway-heading">Railway: track revocation separately from deployment.</h2>
         <p>Railway’s 21 October disclosure says an unauthorized party may have accessed encrypted environment variables and obtained decrypted contents for some. It recommended rotating stored variables and private-registry credentials for all users as a precaution. This is not confirmation that every customer was breached.</p>
         <p>Inventory credential types and owning services without copying secret values into the record. The technical owner should follow the latest notice, replace affected credentials through their issuing providers, update dependent services and confirm the old credentials are revoked. Preserve provider receipts with secret values removed.</p>
@@ -130,7 +125,6 @@
       </section>
 
       <section id="zeabur" aria-labelledby="zeabur-heading">
-        <p class="section-number">06 / Migration</p>
         <h2 id="zeabur-heading">Zeabur: restore before you call a backup usable.</h2>
         <p>Zeabur’s 17 October announcement schedules a wind-down. It describes unauthorized access on 14 October to internal systems and some customer services.</p>
         <div class="table-scroll" tabindex="0" role="region" aria-label="Zeabur shutdown timeline">
@@ -146,7 +140,6 @@
       </section>
 
       <section id="verify" aria-labelledby="verify-heading">
-        <p class="section-number">07 / Verification</p>
         <h2 id="verify-heading">Close the action with evidence. Keep the unanswered question.</h2>
         <p>Separate the action from the conclusion. “Updated” describes work. “The production runtime reports the fixed build at this time” describes evidence. Neither establishes that an earlier compromise never occurred.</p>
         <p class="table-hint">Scroll horizontally to see all columns.</p>
@@ -163,7 +156,6 @@
       </section>
 
       <section id="example" aria-labelledby="example-heading">
-        <p class="section-number">08 / Tabletop</p>
         <h2 id="example-heading">A fictional agency, three open records.</h2>
         <p><strong>Fictional exercise.</strong> These are invented assets and observations, not customer work or evidence of a successful recovery.</p>
         <p class="table-hint">Scroll horizontally to see all columns.</p>
@@ -179,7 +171,6 @@
       </section>
 
       <section id="downloads" aria-labelledby="downloads-heading">
-        <p class="section-number">09 / Take it with you</p>
         <h2 id="downloads-heading">Free downloads. Read-only checks.</h2>
         <p>Read each script before running it. Use a trusted machine. These tools collect or compare narrow observations; they do not patch systems, revoke credentials, assess compromise or certify recovery.</p>
         <div class="download-item">

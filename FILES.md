@@ -61,8 +61,8 @@ All three are read-only checks. Read their source and help before running them. 
 | `robots.txt` | Crawler directions and sitemap location. |
 | `sitemap.xml` | Public page URLs. |
 | `favicon.svg` | Browser-tab icon. |
-| `assets/public-sans.ttf` | Self-hosted Public Sans variable font. |
-| `assets/OFL-Public-Sans.txt` | The font's open-source license. |
+| `assets/inter-latin.woff2` | Self-hosted Inter variable font. |
+| `assets/OFL-Inter.txt` | The font's open-source license. |
 
 ## Build scripts, tests and repository files
 
