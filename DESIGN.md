@@ -1,199 +1,69 @@
 ---
 name: After the alert
-description: A product-first workbench for free incident guides, local tools and downloads.
+description: An open casebook for free incident guides, local checks and response records.
 colors:
-  ink: "#162333"
-  text-secondary: "#4b5b6d"
-  text-muted: "#59697a"
-  canvas: "#f3f6fa"
-  surface: "#fff"
-  surface-muted: "#eaf0f6"
-  border: "#ced8e3"
-  border-subtle: "#e0e6ed"
-  border-strong: "#8a9aad"
-  accent: "#154ce5"
-  accent-strong: "#1038a6"
-  accent-subtle: "#e8efff"
-  success: "#23663f"
-  warning: "#90531b"
-  danger: "#a92e3e"
+  ink: "#242b28"
+  secondary: "#616b64"
+  canvas: "#f4f5f2"
+  surface: "#ffffff"
+  quiet: "#dfe5df"
+  alert: "#ae3d2f"
 typography:
   display:
     fontFamily: "IBM Plex Sans, sans-serif"
-    fontSize: "48px"
-    fontWeight: 600
-    lineHeight: 1.12
-    letterSpacing: "-0.025em"
-  headline:
-    fontFamily: "IBM Plex Sans, sans-serif"
-    fontSize: "36px"
-    fontWeight: 600
-    lineHeight: 1.2
-  title:
-    fontFamily: "IBM Plex Sans, sans-serif"
-    fontSize: "22px"
-    fontWeight: 600
-    lineHeight: 1.2
+    fontSize: "72px"
+    fontWeight: 500
+    lineHeight: 0.98
   body:
     fontFamily: "IBM Plex Sans, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.55
-  label:
+  product:
     fontFamily: "IBM Plex Sans, sans-serif"
-    fontSize: "14px"
+    fontSize: "23px"
     fontWeight: 500
-    lineHeight: 1.5
-rounded:
-  control: "6px"
-  panel: "12px"
-spacing:
-  1: "4px"
-  2: "8px"
-  3: "12px"
-  4: "16px"
-  5: "20px"
-  6: "24px"
-  8: "32px"
-  10: "40px"
-  12: "48px"
-  16: "64px"
-components:
-  button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.surface}"
-    typography: "{typography.label}"
-    rounded: "{rounded.control}"
-    padding: "11px 18px"
-    height: "46px"
-  input:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.control}"
-    padding: "10px 12px"
-    height: "46px"
+    lineHeight: 1.2
 ---
 
-# Design System: After the alert
+# The response margin
 
-## Overview
+After the alert is a free, dated reference for deciding what applies to a system, following the relevant guide and retaining a response record. The visual idea follows that transition: a substantial open margin holds the name and source context; the work starts beside it. The public index is a reading surface. Browser checks are working interfaces with ordinary controls.
 
-**Creative North Star: “Product-first workbench”**
+This replaces the boxed workbench. Preserve the useful four-destination navigation and direct product routes while changing their composition. The identity comes from type, proportion and the relationship between context and action.
 
-After the alert helps a reader move from a product or incident name to the relevant guide, a browser task, or a free download. The homepage puts product search and category selection before the compact guide directory. Each guide row is a single clear route into its playbook. Scripts and templates have their own destinations; browser checks are named tasks that open in place.
+## Composition
 
-The visual system is a quiet, cool-neutral work surface: IBM Plex Sans, dark ink, white reading areas, fine blue-gray rules, and a direct blue for actions and selected in-page tasks. The active primary navigation uses an ink fill with white text. Native links, form controls, disclosures, and visible keyboard focus keep the interface familiar. Guides, scripts, tools, source notes, templates, and donations remain free to access.
+On desktop, the homepage pairs a large, deliberately broken title in the left margin with search and the complete product directory on the right. The controls have no enclosing card. The directory has no enclosing card. A product row has one route into its guide, a persistently underlined product name, a factual status and its evidence summary.
 
-**Key Characteristics:**
+On phones, the margin becomes a compact introduction. Search follows immediately, with a compact topic/count area. The first product must start above y506 in a 390x844 viewport. Navigation retains its four visible labels: Guides, Browser tools, Scripts and Downloads. There is no phone sidebar.
 
-- Product and task labels lead navigation.
-- Blue marks actions and the selected in-page browser task; the active primary destination uses ink and white.
-- Compact rows and separated task pages keep choices scannable.
-- Evidence limits remain visible wherever a tool result could be overread.
+Reading pages use the same edges and type. Contents and source context sit beside the unboxed article on desktop. On phones, Contents remains a discoverable native disclosure. The manual's title and purpose precede its edition note.
 
-## Colors
+Scripts are three open sections with filenames, runtimes, downloads and native command disclosures. Downloads use aligned file rows and a prominent offline-kit action. Browser tasks retain native disclosures, required inputs before optional labels, and one quiet result fill. Donations close the resources without becoming a sales panel.
 
-The palette pairs a cool blue-gray canvas with ink, white surfaces, and one clear blue action color; green, ochre, and red are reserved for semantic states.
+## Type and color
 
-### Primary
-- **Route blue** (#154ce5): Links, primary buttons, focus outlines, and selected browser-tool navigation.
-- **Deep route blue** (#1038a6): Hover state for blue actions and links.
-- **Pale route blue** (#e8efff): Selected or informational blue surface.
+Use the existing self-hosted IBM Plex Sans. Large public-facing type belongs to the homepage name; tools keep a smaller task heading. Product names are distinct from summaries. Long-form body text stays readable at 16px or larger, with a roughly 65–75 character reading measure. Compact summaries and metadata use smaller sizes. Monospace is reserved for commands, code and literal identifiers.
 
-### Neutral
-- **Ink** (#162333): Main text, prominent headers, and dark download feature surface.
-- **Slate text** (#4b5b6d): Supporting copy and navigation labels.
-- **Muted slate** (#59697a): Secondary metadata.
-- **Cool canvas** (#f3f6fa): Page background.
-- **White surface** (#ffffff): Reading panels, controls, and cards.
-- **Soft surface** (#eaf0f6): Secondary panels and quiet hover states.
-- **Fine rule** (#ced8e3): Dividers and panel outlines.
-- **Subtle rule** (#e0e6ed): Low-emphasis row separators.
-- **Strong rule** (#8a9aad): Control borders.
+Mineral canvas #F4F5F2, white #FFFFFF, ink #242B28, secondary #616B64 and quiet #DFE5DF provide the reading ground. Alert #AE3D2F is a restrained signal, primarily for actual action-required states. Main actions use ink. Existing green and ochre are semantic states, not brand decoration. State labels must also be textual.
 
-### Semantic
-- **Confirmed green** (#23663f): Successful local action status.
-- **Caution ochre** (#90531b): Warnings and incomplete checks.
-- **Error red** (#a92e3e): Action-required results and errors.
+The wordmark is typographic. Do not add an enclosing icon tile or a three-line mark that could be mistaken for a menu. The favicon is the lowercase initial with punctuation.
 
-## Typography
+## Controls and surfaces
 
-**Display Font:** IBM Plex Sans (sans-serif fallback)
+Control borders, table cells and genuine disclosure boundaries can follow their native conventions. Large content containers do not need a perimeter, shadow or rounded-card fill. Use spacing and the shared grid to group information. A quiet fill may distinguish a result from its input form.
 
-**Body Font:** IBM Plex Sans (sans-serif fallback)
+Keep visible labels, 44px touch targets, keyboard focus, native select/disclosure behavior, clear empty results and filter reset. Opening a browser task must synchronize the selected task and preserve entered data. Back navigation remains meaningful. Motion should answer interaction; the content must remain visible without an entrance animation. Respect reduced motion.
 
-**Label/Mono Font:** IBM Plex Sans for interface labels; system monospace for code and wallet identifiers.
+## Content contract
 
-**Character:** Clear, workmanlike headings and readable body copy. The same family carries navigation, form labels, directory rows, and long-form guides so the resource pages feel like one site.
+Keep all thirteen topics, eleven response guides, two evidence notes, three read-only scripts and the existing downloads. Do not turn the dated snapshot into a live feed or invent activity, customers, metrics or testimonials. A declaration, installed artifact, execution record and proof of compromise remain different observations. Unknown stays unknown.
 
-### Hierarchy
-- **Display** (600, 48px, 1.12): Largest lead heading where the page uses the full display scale.
-- **Headline** (600, 36px, 1.2): Page and guide headings; mobile styles reduce these sizes.
-- **Title** (600, 22px, 1.2): Section and task titles.
-- **Body** (400, 16px, 1.55): General reading text and manual prose.
-- **Label** (500, 14px, 1.5): Form labels, navigation metadata, and compact controls.
-- **Small metadata** (12–14px): Snapshot dates, file details, status notes, and compact supporting text.
+All information and source files remain free. The voluntary native-USDC-on-Base address remains exactly as supplied. No wallet connection, gated downloads, uploaded inventories or new application dependencies.
 
-## Layout
+## Design stack used
 
-The shared content grid is capped at 1120px, with 32px outer gutters on wide screens and 16px on phones. A 4px spacing rhythm scales through 8, 12, 16, 20, 24, 32, 40, 48, and 64px. The homepage places search and a native category select before a list of compact, single-action guide rows. Browser tools use expandable native task sections; scripts and downloads are separate pages with direct filenames, requirements, and actions. On phones, the manual's collapsed Contents control appears before the article. The article title and purpose precede the expanded-edition note, then the long-form material continues as one reading surface.
+[Taste Skill](https://github.com/Leonxlnx/taste-skill) supplied subject-led composition and the distinction between public reading pages and working app screens. [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) supplied the searchable hierarchy, accessibility and control guidance. [Anthropic frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design) supplied the compact plan, review against the brief, build and screenshot critique process.
 
-At 800px, wide grids and two-column areas reduce; at 600px, page gutters tighten, product rows and tool forms stack, and the manual becomes a single column. Wide tables stay in their own scroll region. Keep navigation labels and control targets readable at phone widths; do not create horizontal page overflow.
-
-## Elevation & Depth
-
-The interface is flat by default. White surfaces, cool-gray fills, and fine borders distinguish reading areas and tasks; the stylesheet defines no shadow vocabulary. Use color and borders to establish grouping rather than adding elevation effects.
-
-## Shapes
-
-Controls use 6px corners; substantial reading and task panels use 12px corners. Borders stay thin and cool gray. Directory entries and download rows use separators instead of individually boxed cards. Native disclosure summaries retain their familiar disclosure shape and interaction.
-
-## Components
-
-### Buttons
-- **Shape:** 6px radius, at least 46px high, with 11px 18px padding.
-- **Primary:** Blue fill (#154ce5), white text, medium-weight 15px type.
-- **Hover / Focus:** Primary blue deepens to #1038a6; keyboard focus uses a visible 3px blue outline with 4px offset.
-- **Secondary:** White fill, strong gray border, ink text; hover shifts to the soft neutral surface.
-
-### Inputs / Fields
-- **Style:** White background, strong gray border, 6px corners, 46px minimum height, 10px 12px padding.
-- **Focus:** Visible 3px blue outline with 4px offset; search may use a 52px height to support its prominent role.
-- **Labels:** Keep labels adjacent to the native input or select. Use muted help text for optionality, units, and evidence limits.
-
-### Navigation
-- **Style:** IBM Plex Sans, medium weight, neutral text on a compact row of 44px minimum-height links.
-- **State:** The current destination uses an ink fill with white text; selected in-page browser task uses a pale blue fill and blue border.
-- **Mobile:** Keep the four primary destinations visible and preserve their labels.
-
-### Guide Rows
-- **Style:** White list surface with subtle dividers, one clear product title, a short evidence summary, and a visible route into the guide.
-- **Responsive behavior:** Desktop aligns title, summary, and arrow; phone layout stacks the content while keeping the entire row actionable.
-
-### Browser Tool Sections
-- Use native `<details>` and `<summary>` for named tasks. The open task is visually explicit and does not discard form data when the reader changes sections.
-- Put the required product/evidence and version inputs before optional asset labels. State what each check can and cannot establish near its result.
-
-### Script and Download Entries
-- Scripts identify their filename and required runtime, then provide a direct download and a native “How to run” disclosure.
-- Keep templates and the complete offline kit on the Downloads page; show file purpose and format beside each download.
-
-### Manual Contents
-- On phones, keep the native Contents disclosure collapsed above the article. Start the article with the manual title and purpose before the edition note, so the reference identifies itself in the first viewport.
-
-## Do's and Don'ts
-
-### Do:
-- **Do** use IBM Plex Sans for interface and reading text; reserve monospace for code and identifiers.
-- **Do** use the established blue tokens for actions, selected in-page tasks, and keyboard focus.
-- **Do** make each product row a direct route to its guide and give scripts, browser tasks, and downloads clear labels.
-- **Do** retain the tool's evidence limits and each standalone script's input and output limits.
-- **Do** preserve native keyboard behavior, visible focus, touch-sized navigation, and scrollable wide tables.
-- **Do** keep donations voluntary and separate from access to free materials.
-
-### Don't:
-- **Don't** add ASCII decoration, fake data states, or decorative illustrations to the workbench.
-- **Don't** turn the guide directory into a grid of generic cards or give one row several competing primary actions.
-- **Don't** use gradients, ornamental shadows, or unrelated icons as decoration.
-- **Don't** present a version comparison, static file match, or self-recorded checkbox as proof that a system is safe.
+Their presets are guidance, not a reason to override this brief. The framed-sheet, ledger, terminal, giant poster and stock FAQ/contact treatments were rejected for specific conflicts with the public resource and the user's correction. Preserve the open response-margin identity rather than restoring a generic kit.
