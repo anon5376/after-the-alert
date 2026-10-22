@@ -18,6 +18,7 @@ if(search) {
   byId('search-controls').hidden=false;
   const rows=[...document.querySelectorAll('.incident-row')];
   const buttons=[...document.querySelectorAll('[data-filter]')];
+  const categoryFilter=byId('category-filter');
   const clear=byId('clear-filters');
   let category='all';
   const update=()=>{
@@ -25,12 +26,14 @@ if(search) {
     let count=0;
     for(const row of rows){row.hidden=!(category==='all'||row.dataset.category===category)||!terms.every(term=>row.dataset.search.includes(term));if(!row.hidden)count++;}
     for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.filter===category));
+    if(categoryFilter)categoryFilter.value=category;
     byId('filter-status').textContent=`${count} of ${rows.length} topics`;
     byId('no-results').hidden=count!==0;
     if(clear)clear.hidden=category==='all'&&!search.value.trim();
   };
   search.addEventListener('input',update);
   for(const button of buttons)button.addEventListener('click',()=>{category=button.dataset.filter;update();});
+  if(categoryFilter)categoryFilter.addEventListener('change',()=>{category=categoryFilter.value;update();});
   if(clear)clear.addEventListener('click',()=>{search.value='';category='all';update();search.focus();});
   update();
 }
@@ -77,12 +80,36 @@ function showResult(container,result,alias) {
     const source=node('a','Original advisory');source.href=result.source;
     links.append(guide,source);container.append(links,node('p',result.limits,'field-help'));
     const add=node('button','Add to response notes','button secondary');add.type='button';
-    add.addEventListener('click',()=>{assets.push({id:nextId++,alias:alias||`${result.product} asset ${assets.length+1}`,product:result.product,version:result.version,result});add.disabled=true;add.textContent='Added to response notes';refreshHandoff();});
+    add.addEventListener('click',()=>{assets.push({id:nextId++,alias:alias||`${result.product} asset ${assets.length+1}`,product:result.product,version:result.version,result});add.disabled=true;add.textContent='Added to response notes';refreshHandoff();const view=node('a','View response notes','button secondary');view.href='#handoff';container.append(view);});
     container.append(add);
   }
 }
 
 if(byId('version-form')) {
+  const toolPanels=[...document.querySelectorAll('details.tool-section')];
+  const syncToolTabs=()=>{
+    const active=toolPanels.find(panel=>panel.open);
+    for(const link of document.querySelectorAll('.tool-tabs a')){
+      if(active&&link.hash===`#${active.id}`)link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    }
+  };
+  const openTool=id=>{
+    const target=byId(id);
+    if(!target||!target.matches('details.tool-section'))return;
+    for(const panel of toolPanels)panel.open=panel===target;
+    syncToolTabs();
+  };
+  for(const panel of toolPanels)panel.addEventListener('toggle',()=>{
+    if(panel.open)openTool(panel.id);
+    else syncToolTabs();
+  });
+  document.addEventListener('click',event=>{
+    const link=event.target instanceof Element?event.target.closest('a[href^="#"]'):null;
+    if(link)openTool(link.hash.slice(1));
+  });
+  window.addEventListener('hashchange',()=>openTool(window.location.hash.slice(1)||'versions'));
+  openTool(window.location.hash.slice(1)||'versions');
   byId('version-form').addEventListener('submit',event=>{
     event.preventDefault();
     showResult(byId('version-result'),matchVersion(byId('product').value,byId('version').value.trim()),byId('asset-alias').value.trim());

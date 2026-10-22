@@ -4,14 +4,16 @@ The website is plain HTML, CSS and JavaScript. There is no backend, database, ac
 
 [Browse the public repository](https://github.com/anon5376/after-the-alert) · [Download the website source](https://after-the-alert.pages.dev/downloads/site-source.zip)
 
-Looking for a script to use? The [script downloads](https://after-the-alert.pages.dev/#scripts) show each filename, required runtime and how to run it.
+Looking for a script to use? The [script downloads](https://after-the-alert.pages.dev/scripts.html) show each filename, required runtime and how to run it.
 
 ## Pages
 
 | File under site/ | Purpose |
 | --- | --- |
-| `index.html` | Searchable incident library, downloads and optional donations. |
-| `tools.html` | Version checks, LiteLLM evidence, credential register and Markdown export. |
+| `index.html` | Searchable product and incident guide directory, with links to tools, scripts, downloads and optional donations. |
+| `tools.html` | Expandable browser tasks for version checks, LiteLLM evidence, credential rotation and response-note export. |
+| `scripts.html` | Three read-only scripts with downloads, runtime requirements, commands and output limits. |
+| `downloads.html` | Complete offline kit, blank templates and website source. |
 | `sources.html` | Original-source links, corrections and evidence limits. |
 | `files.html` | This file inventory. |
 | `manual.html` | General incident-response manual. |
@@ -23,7 +25,7 @@ Guide filenames: `php.html`, `gitlab.html`, `litellm.html`, `railway.html`, `zea
 
 | File under site/ | Purpose |
 | --- | --- |
-| `app.js` | Search/filter reset, product selection from guide links, copy buttons, forms, credential rows, printing and local Markdown export. |
+| `app.js` | Search/category reset, product selection from guide links, expandable browser tasks, copy buttons, forms, credential rows, printing and local Markdown export. |
 | `triage-core.mjs` | Version comparison, LiteLLM evidence classification, credential status and handoff formatting. |
 | `config.js` | Public donation address and network configuration. No secret keys. |
 | `styles.css` | Styles for the homepage, tools, sources, inventory and guides. |
@@ -63,8 +65,8 @@ All three are read-only checks. Read their source and help before running them. 
 | `robots.txt` | Crawler directions and sitemap location. |
 | `sitemap.xml` | Public page URLs. |
 | `favicon.svg` | Browser-tab icon. |
-| `assets/inter-latin.woff2` | Self-hosted Inter variable font. |
-| `assets/OFL-Inter.txt` | The font's open-source license. |
+| `assets/ibm-plex-sans.woff2` | Self-hosted IBM Plex Sans variable font. |
+| `assets/OFL-IBM-Plex-Sans.txt` | The font's open-source license. |
 
 ## Build scripts, tests and repository files
 
@@ -72,7 +74,7 @@ These files are in the repository and source ZIP. They do not run on the hosting
 
 | File | Purpose |
 | --- | --- |
-| `scripts/build-site.mjs` | Generates homepage, tools, sources, inventory, thirteen guide pages, source JSON and sitemap. |
+| `scripts/build-site.mjs` | Generates homepage, tools, scripts, downloads, sources, inventory, thirteen guide pages, source JSON and sitemap. |
 | `scripts/package.mjs` | Creates both downloadable ZIP files using Node.js and the system zip command. |
 | `tests/free-tools.test.mjs` | Six tests for PHP comparison and metadata inspection. |
 | `tests/dependency-files.test.mjs` | Eight tests for declaration parsing, input rejection and output privacy. |

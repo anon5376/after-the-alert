@@ -74,8 +74,8 @@ Serve site/ with a static HTTP server to use the browser modules.
 All user-entered tool data stays in the browser tab unless the user exports it.
 Only publish site/. Keep credentials outside this tree.
 Original code and guides are free to use and redistribute. Third-party source
-materials retain their owners' rights. Inter is distributed under the SIL Open Font License in
-site/assets/OFL-Inter.txt.
+materials retain their owners' rights. IBM Plex Sans is distributed under the SIL Open Font License in
+site/assets/OFL-IBM-Plex-Sans.txt.
 ZIP downloads are omitted from this source archive to avoid recursive copies.
 `);
 for(const [folder,name] of [[kit,'incident-response-kit.zip'],[source,'site-source.zip']]) {

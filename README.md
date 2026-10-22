@@ -2,7 +2,7 @@
 
 Free incident-response playbooks, browser tools and read-only scripts. No signup, paywall or wallet connection.
 
-[Website](https://after-the-alert.pages.dev/) · [File inventory](FILES.md) · [Download the response kit](https://after-the-alert.pages.dev/downloads/incident-response-kit.zip)
+[Website](https://after-the-alert.pages.dev/) · [Scripts](https://after-the-alert.pages.dev/scripts.html) · [Browser tools](https://after-the-alert.pages.dev/tools.html) · [File inventory](FILES.md) · [Download the response kit](https://after-the-alert.pages.dev/downloads/incident-response-kit.zip)
 
 The site covers thirteen topics: eleven operational playbooks and two evidence notes. Browser tools compare supplied PHP, GitLab, Node.js and Plex versions, record LiteLLM evidence, and build a credential-rotation handoff. Input stays in the browser tab unless you export it. Nothing persists after a reload.
 
